@@ -8,3 +8,28 @@ export const getAllProducts = async (req, res, next) => {
     }
 };
 
+export const createNewProduct = async (req, res, next) => {
+    try {
+        res.status(200).json(await productUseCases.createNewProduct());
+    } catch (error) {
+        next(error)
+    }
+};
+
+export const updateProduct = async (req, res, next) => {
+    try {
+        res.status(200).json(await productUseCases.updateProduct());
+    } catch (error) {
+        next(error)
+    }
+}
+export const deleteProduct = async (req, res, next) => {
+    try {
+        res.status(200).json(await productUseCases.deleteProduct());
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+
