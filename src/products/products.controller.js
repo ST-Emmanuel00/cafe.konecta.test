@@ -19,7 +19,9 @@ export const createNewProduct = async (req, res, next) => {
 
 export const updateProduct = async (req, res, next) => {
     try {
-        res.status(200).json(await productUseCases.updateProduct());
+        const productId = req.params.id;
+        const newProductData = req.body;
+        res.status(200).json(await productUseCases.updateProduct(productId, newProductData));
     } catch (error) {
         next(error)
     }

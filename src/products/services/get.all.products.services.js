@@ -7,7 +7,7 @@ export const getAllProducts = async () => {
 
         return {
             message: 'Get all products jeje',
-            data: {products}
+            data: { count: products.length, products }
         }
 
     } catch (error) {

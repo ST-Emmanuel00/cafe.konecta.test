@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-import { errorHandler } from "../../common/middlewares/index.js";
+import { errorCatcher } from "../../common/middlewares/index.js";
 
 export const createNewProductValidations = [
   body('name')
@@ -17,6 +17,6 @@ export const createNewProductValidations = [
   body('stock')
     .isInt({ gt: 1 }).withMessage('Stock must be an integer greater than 0')
     .notEmpty().withMessage('Stock is required'),
-    errorHandler
+    errorCatcher
 ];
 
