@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" 
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id          String    @id @default(uuid())
+  name        String    @db.VarChar(255)
+  reference   String    @db.VarChar(255)
+  price       Int
+  weight      Int
+  category    String    @db.VarChar(255)
+  stock       Int
+  createdAt   DateTime  @default(now())
+  sales       Sale[]
+
+  @@map("products") // Cambia esto si necesitas personalizar el nombre de la tabla en la BD
+}
+
+model Sale {
+  id          String    @id @default(uuid())
+  quantity    Int
+  soldAt      DateTime  @default(now())
+  productId   String
+  product     Product   @relation(fields: [productId], references: [id])
+
+  @@map("sales") // Cambia esto si necesitas personalizar el nombre de la tabla en la BD
+}

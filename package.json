@@ -1,0 +1,27 @@
+{
+  "name": "cafe",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env ./src/main.js",
+    "dev": " node --env-file=.env.dev --watch ./src/main.js",
+    "generate:dev": "npx --env-file=.env.dev prisma generate --schema=./prisma/schema.prisma",
+    "migrate:dev": "dotenv -e .env.dev -- npx prisma migrate dev --schema=./prisma/schema.prisma",
+    "build": "echo \"Cafe\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^6.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "joi": "^17.13.3"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^8.0.0",
+    "prisma": "^6.1.0"
+  }
+}
