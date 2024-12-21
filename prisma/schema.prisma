@@ -18,7 +18,7 @@ model Product {
   createdAt   DateTime  @default(now())
   sales       Sale[]
 
-  @@map("products") // Cambia esto si necesitas personalizar el nombre de la tabla en la BD
+  @@map("products") 
 }
 
 model Sale {
@@ -28,5 +28,5 @@ model Sale {
   productId   String
   product     Product   @relation(fields: [productId], references: [id])
 
-  @@map("sales") // Cambia esto si necesitas personalizar el nombre de la tabla en la BD
+  @@map("sales") 
 }

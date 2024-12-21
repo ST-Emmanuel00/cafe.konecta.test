@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node --env-file=.env ./src/main.js",
     "dev": " node --env-file=.env.dev --watch ./src/main.js",
+    "seed:dev": "node --env-file=.env.dev ./seed/main.js",
     "generate:dev": "npx --env-file=.env.dev prisma generate --schema=./prisma/schema.prisma",
     "migrate:dev": "dotenv -e .env.dev -- npx prisma migrate dev --schema=./prisma/schema.prisma",
     "build": "echo \"Cafe\""
