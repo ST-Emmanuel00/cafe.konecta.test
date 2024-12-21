@@ -10,7 +10,8 @@ export const getAllProducts = async (req, res, next) => {
 
 export const createNewProduct = async (req, res, next) => {
     try {
-        res.status(200).json(await productUseCases.createNewProduct());
+        const productData = req.body;
+        res.status(200).json(await productUseCases.createNewProduct(productData));
     } catch (error) {
         next(error)
     }
