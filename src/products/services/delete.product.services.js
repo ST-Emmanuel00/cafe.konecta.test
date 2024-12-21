@@ -1,12 +1,20 @@
 import { db } from "../../common/config/index.js";
+import { checkProductExistById } from "../utils/index.js";
 
-export const deleteProduct = async () => {
+export const deleteProduct = async (id) => {
     try {
 
-        const products = await db.product.findMany()
+        await checkProductExistById(id);
+
+        const productDeleted = await db.product.delete({
+            where: {
+                id
+            }
+        });
 
         return {
-            message: 'delete product jeje',
+            message: "Product deleted",
+            data: { product: productDeleted }
         }
 
     } catch (error) {

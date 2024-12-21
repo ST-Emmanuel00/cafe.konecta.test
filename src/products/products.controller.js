@@ -28,7 +28,8 @@ export const updateProduct = async (req, res, next) => {
 }
 export const deleteProduct = async (req, res, next) => {
     try {
-        res.status(200).json(await productUseCases.deleteProduct());
+        const { id: productId } = req.params;
+        res.status(200).json(await productUseCases.deleteProduct(productId));
     } catch (error) {
         next(error)
     }
