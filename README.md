@@ -28,31 +28,40 @@ $ cd api
 
 # Step 3: Install dependencies *
 $ npm install
+
+# Step 4: Search env files in notion resourse
+# Open "notion resourses" in description seccion 
 ```
 ### Option 1: Env Production
 ```bash
-# Step 4: Fill data base (optional)
+# Step 5: Fill data base (optional)
 $ npm run seed
 
-# Step 7: Run server
+# Step 6: Run server
 $ npm run start
 ```
 
 ### Option 2: Env development
 
 ```bash
-# Step 4: Up docker data base container
+# Step 5: Up docker data base container
 $ docker compose up development-db
 
-# Step 5: Migrate db * 
+# Step 6: Migrate db * 
 $ npm run migrate:dev
 
-# Step 6: Fill data base (optional)
+# Step 7: Fill data base (optional)
 $ npm run seed:dev
 
-# Step 7: Run server
+# Step 8: Run server
 $ npm run dev
 ```
+
+### Final step
+```bash
+# Test in postman link or use web app
+```
+
 
 ## Compile and run the project
 
