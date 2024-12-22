@@ -13,7 +13,7 @@ model Product {
   reference   String    @db.VarChar(255) @unique
   price       Int
   weight      Int
-  category    Category
+  category    String    @db.VarChar(255)
   stock       Int
   createdAt   DateTime  @default(now())
   sales       Sale[]
@@ -29,12 +29,4 @@ model Sale {
   product     Product   @relation(fields: [productId], references: [id])
 
   @@map("sales") 
-}
-
-enum Category {
-  COFFEE
-  TEA
-  EQUIPMENT
-  PASTRY
-  SNACK
 }

@@ -5,11 +5,14 @@
   "type": "module",
   "scripts": {
     "start": "node --env-file=.env ./src/main.js",
+    "generate": "npx --env-file=.env prisma generate --schema=./prisma/schema.prisma",
+    "migrate": "dotenv -e .env -- npx prisma migrate dev --schema=./prisma/schema.prisma",
+    "seed": "node --env-file=.env ./seed/main.js",
+
     "dev": " node --env-file=.env.dev --watch ./src/main.js",
-    "seed:dev": "node --env-file=.env.dev ./seed/main.js",
     "generate:dev": "npx --env-file=.env.dev prisma generate --schema=./prisma/schema.prisma",
     "migrate:dev": "dotenv -e .env.dev -- npx prisma migrate dev --schema=./prisma/schema.prisma",
-    "build": "echo \"Cafe\""
+    "seed:dev": "node --env-file=.env.dev ./seed/main.js"
   },
   "author": "",
   "license": "ISC",
