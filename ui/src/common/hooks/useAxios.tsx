@@ -9,8 +9,8 @@ interface FetchDataParams {
 }
 
 interface Response<T = Record<string, unknown>> {
-  status: number;
-  info: T;
+  message: string;
+  data: T
 }
 
 interface UseAxiosReturn {
@@ -23,7 +23,7 @@ interface UseAxiosReturn {
   delete: (endpoint: string, params?: Record<string, unknown>) => Promise<boolean>;
 }
 
-export const useAxios = (baseURL: string = "http://localhost:9090/api"): UseAxiosReturn => {
+export const useAxios = (baseURL: string = "http://localhost:9090/v1"): UseAxiosReturn => {
   const [response, setResponse] = useState<Response | null>(null);
   const [hasError, setHasError] = useState<AxiosError | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);

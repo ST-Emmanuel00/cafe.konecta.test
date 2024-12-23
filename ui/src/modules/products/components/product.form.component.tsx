@@ -1,6 +1,10 @@
-import { useForm } from 'react-hook-form';
+import { get, useForm } from 'react-hook-form';
 import { Product } from '../types';
 import { Link } from 'react-router-dom';
+import { useAxios } from '../../../common/hooks';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { closeEditModal, setProducts } from '../product.slice';
 
 interface ProductFormProps {
     productData?: Product;
@@ -8,22 +12,53 @@ interface ProductFormProps {
 
 export const ProductForm: React.FC<ProductFormProps> = ({ productData }) => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { response, hasError, post, put } = useAxios();
+    const { response: getResponse, get } = useAxios();
+    const dispatch = useDispatch();
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: productData || {
             name: '',
-            reference: '',
             price: 0,
             weight: 0,
             category: '',
             stock: 0,
         }
     });
-    const onSubmit = (data: any) => {
+    const onSubmit = async (data: any) => {
+
+        if (productData) {
+
+            console.log('productData:', productData);
+            const success = await put(`/products/${productData.id}`, data);
+            console.log('success:', success);
+            if (success) {
+                await get('/products');
+            }
+        }
+
         console.log('Formulario enviado:', data);
+        const success = await post('/products', data);
+        if (success) {
+            await get('/products');
+        }
+
+
     };
 
+    useEffect(() => {
+        if (getResponse) {
+            dispatch(setProducts(getResponse.data.products));
+            reset();
+            if (productData) {
+                dispatch(closeEditModal());
+            }
+        }
+    }, [getResponse]);
+
+
     return (
-        <section className={`bg-white p-6 rounded-3xl shadow-lg mb-6 ${productData && 'w-[600PX]' }`}>
+        <section className={`bg-white p-6 rounded-3xl shadow-lg mb-6 ${productData && 'w-[600PX]'}`}>
             <h2 className="text-xl font-bold mb-4"> {!productData ? "Agregar Producto" : "Editar producto"}</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 {/* Nombre */}
@@ -131,7 +166,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ productData }) => {
                             <input
                                 type="date"
                                 id="createdAt"
-                                {...register("createdAt", { required: "La fecha de creación es obligatoria" })}
+                                {...register("createdAt")}
                                 className="w-full border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-300 px-4 py-2"
                                 readOnly={true}
                             />
@@ -151,7 +186,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ productData }) => {
                         type="submit"
                         className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition w-32"
                     >
-                        Agregar
+                        {productData ? "Modificar" : "Agrgear"}
                     </button>
                 </div>
             </form>
