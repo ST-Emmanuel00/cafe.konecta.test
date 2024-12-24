@@ -15,10 +15,10 @@ export const createNewProduct = async (productData) => {
             data: {
                 name,
                 reference: generateUniqueReference(name),
-                price,
-                weight,
+                price: Number(price),
+                weight: Number(weight),
                 category,
-                stock,
+                stock: Number(stock),
             },
         });
         return {

@@ -8,6 +8,9 @@ export const getProductsToSale = async () => {
                 stock: {
                     gt: 0
                 }
+            },
+            orderBy: {
+                createdAt: 'desc'
             }
         });
 

@@ -21,7 +21,7 @@
 
 ```bash
 # Step 1: clone repository *
-$ git clone https://github.com/ST-Emmanuel00/backend.cafe.git
+$ git clone https://github.com/ST-Emmanuel00/cafe.konecta.test.git
 
 # Step 2: Api directory *
 $ cd api

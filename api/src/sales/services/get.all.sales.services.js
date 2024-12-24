@@ -7,8 +7,18 @@ export const getAllSales = async () => {
             include: {
                 product: true,
             },
+            orderBy: {
+                soldAt: 'desc'
+            },
+            take: 5
         });
-        return { message: "Get all sales", data: { count: sales.length, sales } };
+
+        const salesWithTotal = sales.map(sale => ({
+            ...sale,
+            total: sale.product.price * sale.quantity
+        }));
+
+        return { message: "Get all sales", data: { count: sales.length, sales: salesWithTotal } };
     } catch (error) {
         throw error
     }

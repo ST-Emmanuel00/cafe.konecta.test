@@ -19,9 +19,9 @@ export const updateProduct = async (id, newProductData) => {
             data: {
 
                 name,
-                price,
-                weight,
-                stock
+                price: Number(price),
+                weight: Number(weight),
+                stock: Number(stock)
             }
         });
 
