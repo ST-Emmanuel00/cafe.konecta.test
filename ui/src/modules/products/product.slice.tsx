@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Product } from './types';
+import { ICommomState } from '../../common/types';
 
-export interface IProductState {
+
+
+export interface IProductState extends ICommomState {
     products: Product[];
     selectedProduct: Product;
-    loading: boolean;
-    error: any;
     isEditModalOpen: boolean;
     isDeleteModalOpen: boolean;
 }
@@ -25,7 +26,8 @@ export const initialProductState: IProductState = {
     loading: false,
     error: null,
     isEditModalOpen: false,
-    isDeleteModalOpen: false
+    isDeleteModalOpen: false,
+    message: ''
 }
 
 // Product slices

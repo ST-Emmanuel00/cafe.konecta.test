@@ -1,50 +1,41 @@
-# React + TypeScript + Vite
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://th.bing.com/th/id/R.5b2a116dc230e944b25b3a67ea408c76?rik=DgNYqSHxx6%2bmdw&pid=ImgRaw&r=0" width="120" alt="Nest Logo" /></a>
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Stack
 
-Currently, two official plugins are available:
+- Language: Typescript
+- Paradigm: functional
+- Framework: React.js
+- State mansagement: Redux toolkit
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Clone repository
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+# Step 1: clone repository *
+$ git clone https://github.com/ST-Emmanuel00/cafe.konecta.test.git
 
-- Configure the top-level `parserOptions` property like this:
+# Step 2: Api directory *
+$ cd ui
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# Step 3: Install dependencies *
+$ npm install
+
+# Step 4: Search env files in notion resourse
+# Open "notion resourses" in description seccion 
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Option 1: Env development
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+
+# Step 8: Run server
+$ npm run dev
 ```
+
+
+
+
+

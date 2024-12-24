@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Product } from '../types';
-import { ActionButton, ButtonColor } from '../../../common/components';
 import { useDispatch, useSelector } from 'react-redux';
-import { IProductState, openDeleteModal, openEditModal, setProducts } from '../product.slice';
+import { Product } from '../types';
 import { useAxios } from '../../../common/hooks';
+import { formatPrice, formatStock, formatWeight } from '../../../common/utils';
+import { ActionButton, ButtonColor, MessageHandler } from '../../../common/components';
+import { IProductState, openDeleteModal, openEditModal, setProducts } from '../product.slice';
 
 export const ProductList = () => {
+
     const dispatch = useDispatch();
     const { products }: IProductState = useSelector((state: any) => state.products);
-    const { response, get, isLoading } = useAxios();
+    const { response, get, isLoading, hasError } = useAxios();
 
     useEffect(() => {
         get('/products');
@@ -21,8 +23,10 @@ export const ProductList = () => {
         }
     }, [response]);
 
+
     return (
         <>
+            <MessageHandler response={response} hasError={hasError} />
             <section className="bg-white p-6 rounded-3xl shadow-lg mb-6 w-full">
                 <div className="mb-4 flex justify-between items-center">
                     <h2 className="text-xl font-bold mb-4">Inventario</h2>
@@ -31,6 +35,10 @@ export const ProductList = () => {
                 {isLoading ? (
                     <div className="text-center h-96 flex items-center justify-center">
                         <p>Loading...</p>
+                    </div>
+                ) : hasError ? (
+                    <div className="text-center h-96 flex items-center justify-center">
+                        <p>Error loading products. Please try again later.</p>
                     </div>
                 ) : (
                     <table className="min-w-full bg-white">
@@ -57,10 +65,10 @@ export const ProductList = () => {
                                     <tr key={product.id}>
                                         <td className="border-b border-gray-200 px-4 py-2">{product.reference}</td>
                                         <td className="border-b border-gray-200 px-4 py-2">{product.name}</td>
-                                        <td className="border-b border-gray-200 px-4 py-2">{product.price}</td>
-                                        <td className="border-b border-gray-200 px-4 py-2">{product.weight}</td>
+                                        <td className="border-b border-gray-200 px-4 py-2">{formatPrice(product.price)}</td>
+                                        <td className="border-b border-gray-200 px-4 py-2">{formatWeight(product.weight)}</td>
                                         <td className="border-b border-gray-200 px-4 py-2">{product.category}</td>
-                                        <td className="border-b border-gray-200 px-4 py-2">{product.stock}</td>
+                                        <td className="border-b border-gray-200 px-4 py-2">{formatStock(product.stock)}</td>
                                         <td className="border-b border-gray-200 px-4 py-2 flex justify-around">
                                             <ActionButton
                                                 color={ButtonColor.BLUE}

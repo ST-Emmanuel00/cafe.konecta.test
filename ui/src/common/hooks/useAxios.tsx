@@ -28,9 +28,9 @@ export const useAxios = (baseURL: string = "http://localhost:9090/v1"): UseAxios
   const [hasError, setHasError] = useState<AxiosError | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // Cache and queue
-  const cache = useRef<Record<string, Response>>({});
-  const queue = useRef<Record<string, Array<(value: boolean) => void>>>({});
+  // // Cache and queue
+  // const cache = useRef<Record<string, Response>>({});
+  // const queue = useRef<Record<string, Array<(value: boolean) => void>>>({});
 
   const fetchData = async ({
     endpoint,
@@ -40,22 +40,22 @@ export const useAxios = (baseURL: string = "http://localhost:9090/v1"): UseAxios
   }: FetchDataParams): Promise<boolean> => {
     setIsLoading(true);
     setHasError(null);
-    const cacheKey = JSON.stringify({ endpoint, method, data, params });
+    // const cacheKey = JSON.stringify({ endpoint, method, data, params });
 
-    if (cache.current[cacheKey]) {
-      setResponse(cache.current[cacheKey]);
-      setIsLoading(false);
-      return true;
-    }
+    // if (cache.current[cacheKey]) {
+    //   setResponse(cache.current[cacheKey]);
+    //   setIsLoading(false);
+    //   return true;
+    // }
 
-    // Queue logic
-    if (queue.current[cacheKey]) {
-      return new Promise(resolve => {
-        queue.current[cacheKey].push(resolve);
-      });
-    } else {
-      queue.current[cacheKey] = [];
-    }
+    // // Queue logic
+    // if (queue.current[cacheKey]) {
+    //   return new Promise(resolve => {
+    //     queue.current[cacheKey].push(resolve);
+    //   });
+    // } else {
+    //   queue.current[cacheKey] = [];
+    // }
 
     try {
       const token = localStorage.getItem("auth-token");
@@ -69,15 +69,15 @@ export const useAxios = (baseURL: string = "http://localhost:9090/v1"): UseAxios
         },
         withCredentials: true,
       });
-      cache.current[cacheKey] = result.data;
       setResponse(result.data);
-      queue.current[cacheKey].forEach(callback => callback(true));
-      queue.current[cacheKey] = [];
+      // cache.current[cacheKey] = result.data;
+      // queue.current[cacheKey].forEach(callback => callback(true));
+      // queue.current[cacheKey] = [];
       return true;
     } catch (error) {
       setHasError(error as AxiosError);
-      queue.current[cacheKey].forEach(callback => callback(false));
-      queue.current[cacheKey] = [];
+      // queue.current[cacheKey].forEach(callback => callback(false));
+      // queue.current[cacheKey] = [];
       return false;
     } finally {
       setIsLoading(false);

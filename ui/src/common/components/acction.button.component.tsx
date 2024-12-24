@@ -1,12 +1,12 @@
 export enum ButtonColor {
     BLUE = 'blue',
     RED = 'red',
-    GREEN = 'green'
+    GREEN = 'blue'
 }
 
 interface ButtonProps {
     label: string;
-    onClick: () => void;
+    onClick?: () => void;
     color: ButtonColor;
 }
 
