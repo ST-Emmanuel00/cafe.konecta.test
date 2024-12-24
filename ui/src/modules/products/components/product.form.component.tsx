@@ -1,4 +1,4 @@
-import { get, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { Product } from '../types';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAxios } from '../../../common/hooks';

@@ -1,10 +1,10 @@
-import { set, useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { Product } from '../../products/types';
 import { ActionButton, ButtonColor, MessageHandler } from '../../../common/components';
 import { useDispatch, useSelector } from 'react-redux';
-import { ISaleState, setProductsToSale, setSales, setSelectedProduct } from '../sales.slice';
+import { ISaleState, setProductsToSale, setSales } from '../sales.slice';
 import { useAxios } from '../../../common/hooks';
-import { useEffect, useState } from 'react';
 import { Sale } from '../types';
 
 interface SaleFormProps {

@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 interface FetchDataParams {
   endpoint: string;
