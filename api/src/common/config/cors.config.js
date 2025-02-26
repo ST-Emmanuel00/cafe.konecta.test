@@ -1,5 +1,5 @@
 export const corsValues = {
-    origin: "http://localhost:5173",
+    origin: "https://frontend-production-b386.up.railway.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   };
