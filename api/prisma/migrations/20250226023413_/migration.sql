@@ -22,5 +22,11 @@ CREATE TABLE "sales" (
     CONSTRAINT "sales_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateIndex
+CREATE UNIQUE INDEX "products_name_key" ON "products"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "products_reference_key" ON "products"("reference");
+
 -- AddForeignKey
 ALTER TABLE "sales" ADD CONSTRAINT "sales_productId_fkey" FOREIGN KEY ("productId") REFERENCES "products"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
