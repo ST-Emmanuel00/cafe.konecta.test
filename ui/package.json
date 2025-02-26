@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build"
+    "build": "tsc -b && vite build",
+    "start": "serve -s dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
@@ -15,7 +16,8 @@
     "react-hook-form": "^7.54.2",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.0",
-    "react-toastify": "^11.0.2"
+    "react-toastify": "^11.0.2",
+    "serve": "^14.2.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
