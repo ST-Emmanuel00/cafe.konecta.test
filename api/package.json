@@ -4,7 +4,7 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "start": "node --env-file=.env ./src/main.js",
+    "start": "node ./src/main.js",
     "generate": "npx --env-file=.env prisma generate --schema=./prisma/schema.prisma",
     "migrate": "dotenv -e .env -- npx prisma migrate dev --schema=./prisma/schema.prisma",
     "seed": "node --env-file=.env ./seed/main.js",
